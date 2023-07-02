@@ -29,6 +29,20 @@ class User < ApplicationRecord
     followers.find_by(followed_id: user_id).destroy
   end
 
+  def self.looks(method,word)
+    if search == "forward_match"
+        @users = User.where("text LIKE?", "#{word}")
+    elsif search == "backward_match"
+        @users = User.where("text LIKE?", "%#{word}")
+    elsif search == "perfect_match"
+        @users = User.where("#{word}")
+    elsif search == "partial_matdh"
+        @users = User.where("text LIKE?", "%#{word}%")
+    else
+        @users = User.all
+    end
+  end
+
 
   def following?(user)
     following_users.include?(user)
