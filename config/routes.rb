@@ -5,9 +5,19 @@ Rails.application.routes.draw do
   get "home/about"=>"homes#about"
 
   devise_for :users
-  resources :books, only: [:index,:show,:edit,:create,:destroy,:update]
-  resources :users, only: [:index,:show,:edit,:update]
+  resources :books, only: [:index,:show,:edit,:create,:destroy,:update] do
+    resources :book_comments, only: [:create,:destroy,]
+    resource :favorites, only: [:create, :destroy]
+  end
+
+  resources :users, only: [:index,:show,:edit,:update]do
+    member do
+      get :follows, :followers
+    end
+      resource :relationships, only: [:create, :destroy]
+  end
+
+  end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
-end
