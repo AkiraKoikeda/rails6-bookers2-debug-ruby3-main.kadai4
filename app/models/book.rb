@@ -8,16 +8,16 @@ class Book < ApplicationRecord
   def favorited_by?(user)
     favorites.exists?(user_id: user.id)
   end
-  
-  def self.looks(method,word)
+
+  def self.looks(image,search,word)
     if search == "forward_match"
-        @books = Book.where("text LIKE?", "#{word}")
+        @books = Book.where("title LIKE?", "#{word}%")
     elsif search == "backward_match"
-        @books = Book.where("text LIKE?", "%#{word}")
+        @books = Book.where("title LIKE?", "%#{word}")
     elsif search == "perfect_match"
-        @books = Book.where("#{word}")
+        @books = Book.where("title LIKE?", "#{word}")
     elsif search == "partial_matdh"
-        @books = Book.where("text LIKE?", "%#{word}%")
+        @books = Book.where("title LIKE?", "%#{word}%")
     else
         @books = Book.all
     end

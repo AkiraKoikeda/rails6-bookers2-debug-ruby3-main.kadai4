@@ -29,15 +29,15 @@ class User < ApplicationRecord
     followers.find_by(followed_id: user_id).destroy
   end
 
-  def self.looks(method,word)
+  def self.looks(image,search,word)
     if search == "forward_match"
-        @users = User.where("text LIKE?", "#{word}")
+        @users = User.where("name LIKE?", "#{word}%")
     elsif search == "backward_match"
-        @users = User.where("text LIKE?", "%#{word}")
+        @users = User.where("name LIKE?", "%#{word}")
     elsif search == "perfect_match"
-        @users = User.where("#{word}")
+        @users = User.where("name LIKE?", "#{word}")
     elsif search == "partial_matdh"
-        @users = User.where("text LIKE?", "%#{word}%")
+        @users = User.where("name LIKE?", "%#{word}%")
     else
         @users = User.all
     end
@@ -49,10 +49,6 @@ class User < ApplicationRecord
   end
 
   def get_profile_image(width, height)
-    unless profile_image.attached?
-      file_path = Rails.root.join('app/assets/images/no-image-icon.jpg')
-      profile_image.attach(io: File.open(file_path), filename: 'default-image-icon.jpg', content_type: 'image/jpeg')
-    end
-  profile_image.variant(resize_to_limit: [width, height]).processed
+   (profile_image.attached?) ? profile_image : 'no_image.jpg'
   end
 end

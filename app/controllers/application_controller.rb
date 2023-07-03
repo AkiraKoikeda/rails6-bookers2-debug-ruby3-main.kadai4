@@ -3,7 +3,6 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :is_matching_login_user, only: [:edit, :update]
 
-
   private
 
   def after_sign_in_path_for(resource)
