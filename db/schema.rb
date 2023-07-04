@@ -81,8 +81,6 @@ ActiveRecord::Schema.define(version: 2023_07_02_084132) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer "follower_id"
-    t.integer "followed_id"
     t.string "name"
     t.text "introduction"
     t.datetime "created_at", precision: 6, null: false
