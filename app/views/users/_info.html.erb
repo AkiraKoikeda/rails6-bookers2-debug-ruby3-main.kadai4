@@ -34,6 +34,15 @@
         <% end %>
       <% end %>
     </th>
+    <th>
+      <% if current_user.id != user.id %>
+        <% if current_user.following?(user) %>
+          <% if user.following?(current_user) %>
+            <%= link_to "chatを始める", chat_path(user.id) %>
+          <% end %>
+        <% end %>
+      <% end %>
+    </th>
   </tr>
 </table>
 
