@@ -16,6 +16,14 @@ class BooksController < ApplicationController
         x.favorited_users.includes(:favorites).where(created_at: from...to).size
       }.reverse
     @book = Book.new
+    @all_books = Book.all
+    @today_book = @all_books.created_today
+    @yesterday_book = @all_books.created_yesterday
+    @book_2days_ago = @all_books.created_2days_ago
+    @book_3days_ago = @all_books.created_3days_ago
+    @book_4days_ago = @all_books.created_4days_ago
+    @book_5days_ago = @all_books.created_5days_ago
+    @book_6days_ago = @all_books.created_6days_ago
   end
 
   def create

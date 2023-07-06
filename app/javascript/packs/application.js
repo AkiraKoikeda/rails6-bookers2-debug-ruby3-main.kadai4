@@ -10,8 +10,10 @@ import "channels"
 import "jquery"
 import "popper.js"
 import "bootstrap"
+import Chart from "chart.js/auto";
+global.Chart = Chart;
 
-import "../stylesheets/application" 
+import "../stylesheets/application"
 
 Rails.start()
 Turbolinks.start()
