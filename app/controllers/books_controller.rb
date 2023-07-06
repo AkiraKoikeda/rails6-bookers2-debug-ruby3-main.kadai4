@@ -3,6 +3,7 @@ class BooksController < ApplicationController
   def show
     @books = Book.new
     @book = Book.find(params[:id])
+    current_user.read_counts.create(book_id: @book.id)
     @user = @book.user
     @book_comment = BookComment.new
   end
