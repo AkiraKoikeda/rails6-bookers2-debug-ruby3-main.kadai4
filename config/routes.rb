@@ -12,7 +12,8 @@ Rails.application.routes.draw do
 
   get "search" => "searches#search"
 
-  resources :users, only: [:index,:show,:edit,:update]do
+  resources :users, only: [:index,:show,:edit,:update] do
+    get "search", to: "users#search"
     member do
       get :follows, :followers
     end

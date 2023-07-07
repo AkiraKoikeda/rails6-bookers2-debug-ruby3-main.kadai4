@@ -10,6 +10,11 @@ class UsersController < ApplicationController
     @yesterday_book = @books.created_yesterday
     @this_week_book = @books.created_this_week
     @last_week_book = @books.created_last_week
+    @book_2days_ago = @books.created_2days_ago
+    @book_3days_ago = @books.created_3days_ago
+    @book_4days_ago = @books.created_4days_ago
+    @book_5days_ago = @books.created_5days_ago
+    @book_6days_ago = @books.created_6days_ago
   end
 
   def index
@@ -37,6 +42,11 @@ class UsersController < ApplicationController
   def followers
     user = User.find(params[:id])
     @users = user.follower_users
+  end
+
+  def search
+    @user = User.find(params[:user_id])
+    @books = @user.books.where(created_at: params[:created_at].to_date.all_day)
   end
 
   private
