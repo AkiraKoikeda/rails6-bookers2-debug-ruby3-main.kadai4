@@ -13,6 +13,13 @@ import "bootstrap"
 import Chart from "chart.js/auto";
 global.Chart = Chart;
 
+import Raty from "raty.js"
+window.raty = function(elem,opt) {
+  let raty = new Raty(elem,opt)
+  raty.init();
+  return raty;
+}
+
 import "../stylesheets/application"
 
 Rails.start()
