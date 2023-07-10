@@ -13,6 +13,8 @@ import "bootstrap"
 import Chart from "chart.js/auto";
 global.Chart = Chart;
 
+window.$ = window.jQuery = require('jquery')
+
 import Raty from "raty.js"
 window.raty = function(elem,opt) {
   let raty = new Raty(elem,opt)
