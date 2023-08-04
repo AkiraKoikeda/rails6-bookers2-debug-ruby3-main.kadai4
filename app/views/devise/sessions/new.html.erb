@@ -3,7 +3,8 @@
     <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0">
       <h2>Log in</h2>
       <%= form_with model: @user, url: session_path(resource_name), local: true do |f| %>
-        <div class="field">
+      <div class="d-flex">
+        
           <%= f.label :name %><br />
           <%= f.text_field :name, autofocus: true, class: "name" %>
         </div>
@@ -20,6 +21,7 @@
         <div class="actions">
           <%= f.submit "Log in" ,class: 'btn btn-sm btn-primary'%>
         </div>
+      </div>
       <% end %>
       <%= render "devise/shared/links" %>
     </div>

@@ -22,7 +22,11 @@ Rails.application.routes.draw do
 
   resources :chats, only: [:show, :create]
   resources :groups, only: [:new, :create, :index, :show, :edit, :update]
-
+  
+  devise_scope :user do
+    post "users/guest_sign_in", to: "users/session#guest_sign_in"
+  end
+  
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

@@ -60,4 +60,17 @@ class User < ApplicationRecord
   def get_profile_image(width, height)
    (profile_image.attached?) ? profile_image : 'no_image.jpg'
   end
+
+  GUEST_USER_EMAIL = "guest@example.com"
+
+  def self.guest
+    find_or_create_by!(email: GUEST_USER_MAIL) do |user|
+      user.password = SecureRandom.urlsafe_base64
+      user.name = "guestuser"
+    end
+  end
+  
+  def guest_user?
+    email == GUEST_USER_EMAIL
+  end 
 end
